@@ -1,0 +1,161 @@
+HTML
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - 苹果科技风格</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #161617;
+            --text-color: #f5f5f7;
+            --text-secondary: #86868b;
+            --link-color: #2997ff;
+            --font-stack: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-stack); background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; }
+        a { color: var(--link-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* 顶栏 */
+        .global-nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: 44px;
+            background-color: rgba(22, 22, 23, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 9999; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav-content { max-width: 1024px; height: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 22px; }
+        .nav-logo { font-size: 18px; font-weight: 600; }
+        .nav-links { display: flex; list-style: none; gap: 32px; font-size: 12px; color: #cc; }
+
+        /* Hero 欢迎区域 */
+        .hero-section {
+            height: 85vh; width: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center; padding-top: 44px;
+            background: linear-gradient(180deg, #000000 70%, #0b0b0c 100%);
+        }
+        .headline {
+            font-size: 56px; font-weight: 700; letter-spacing: -0.005em;
+            background: linear-gradient(180deg, #ffffff 30%, #a1a1a6 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;
+        }
+        .subhead { font-size: 24px; font-weight: 400; color: var(--text-secondary); margin-bottom: 32px; }
+        
+        /* 联系方式标签 */
+        .contact-tags { display: flex; gap: 16px; font-size: 14px; }
+        .tag-btn { background-color: #f5f5f7; color: #1d1d1f; padding: 8px 18px; border-radius: 980px; font-weight: 500; }
+        .tag-btn-sec { border: 1px solid #f5f5f7; color: #f5f5f7; padding: 8px 18px; border-radius: 980px; }
+
+        /* 内容大版块标题 */
+        .section-title { max-width: 1024px; margin: 80px auto 24px; padding: 0 22px; font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
+
+        /* 矩阵网格卡片布局 */
+        .grid-container { max-width: 1024px; margin: 0 auto 40px; padding: 0 22px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .card-full { grid-column: span 2; }
+        
+        .apple-card {
+            background-color: var(--card-bg); border-radius: 18px; padding: 40px;
+            display: flex; flex-direction: column; justify-content: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .apple-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255,255,255,0.03); }
+        .card-eyebrow { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+        .card-heading { font-size: 28px; font-weight: 600; margin-bottom: 16px; color: #fff; }
+        .card-body { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* 技能清单小方块 */
+        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .skill-badge { background: rgba(255,255,255,0.06); padding: 6px 14px; border-radius: 8px; font-size: 13px; color: #f5f5f7; border: 1px solid rgba(255,255,255,0.04); }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .headline { font-size: 38px; }
+            .subhead { font-size: 18px; }
+            .grid-container { grid-template-columns: 1fr; }
+            .card-full { grid-column: span 1; }
+            .apple-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶栏 -->
+    <nav class="global-nav">
+        <div class="nav-content">
+            <div class="nav-logo"></div>
+            <div class="nav-links">个人简历演示</div>
+            <div style="font-size: 14px; color: var(--link-color);">在线状态</div>
+        </div>
+    </nav>
+
+    <!-- Hero 核心介绍 -->
+    <section class="hero-section">
+        <h1 class="headline">我是 陈闽龙</h1>
+        <p class="subhead">求职意向：新媒体运营 / 广告营销策划</p>
+        <div class="contact-tags">
+            <a href="mailto:your_email@example.com" class="tag-btn">📧 联系我</a>
+            <span class="tag-btn-sec">📱 17723944229</span>
+        </div>
+    </section>
+
+    <!-- 主体内容 -->
+    <h2 class="section-title">核心实力</h2>
+    <div class="grid-container">
+        <!-- 技能卡片 -->
+        <div class="apple-card card-full">
+            <p class="card-eyebrow">SKILLS & TOOLS</p>
+            <h3 class="card-heading">技术栈清单</h3>
+            <p class="card-body">目前已掌握并能独立运用于项目开发的前端基础工具及工作流：</p>
+            <div class="skill-list">
+                <span class="skill-badge">HTML5 语义化标签</span>
+                <span class="skill-badge">CSS3 响应式布局</span>
+                <span class="skill-badge">JavaScript 基础</span>
+                <span class="skill-badge">VS Code 编辑器</span>
+                <span class="skill-badge">Git 版本控制</span>
+                <span class="skill-badge">GitHub Pages 部署</span>
+            </div>
+        </div>
+
+        <!-- 教育经历 -->
+        <div class="apple-card">
+            <p class="card-eyebrow">EDUCATION</p>
+            <h3 class="card-heading">教育背景</h3>
+            <p class="card-body" style="color: #fff; font-weight: 500;">重庆工商大学 · 市场营销</p>
+            <p class="card-body" style="margin-top: 4px;">2017.09 - 2021.06 (毕业时间)</p>
+            <p class="card-body" style="margin-top: 12px;">在校修读过前端网页设计相关基础，具备良好的自学能力与逻辑思维。</p>
+        </div>
+
+        <!-- 自我评价 -->
+        <div class="apple-card">
+            <p class="card-eyebrow">PROFILE</p>
+            <h3 class="card-heading">自我进修</h3>
+            <p class="card-body">对代码有洁癖，向往卓越的 UI/UX 用户体验。近期通过实践独立打通了从本地代码编写、Git 协同到云端自动化部署的全套现代化前端开发工作流，具备极强的执行力。</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">项目成果</h2>
+    <div class="grid-container">
+        <!-- 项目一 -->
+        <div class="apple-card card-full">
+            <p class="card-eyebrow">PROJECTS</p>
+            <h3 class="card-heading">精仿 Apple 风格个人科技主页</h3>
+            <p class="card-body">
+                <strong>项目描述：</strong> 严格遵循 Apple 官网视觉规范（极简黑白灰、毛玻璃导航栏、高对比度粗标题）打造的个人简历网页。<br>
+                <strong>核心技术：</strong> 纯原生 HTML5 + CSS3 响应式架构，集成 CSS 贝塞尔曲线过渡动画、Flexbox 及 Grid 复合网格布局。<br>
+                <strong>工程亮点：</strong> 项目完全通过 <strong>VS Code</strong> 纯手工编码完成，使用 <strong>Git</strong> 进行多版本精细化迭代维护，并成功依托 <strong>GitHub Pages</strong> 服务实现公网自动化部署与发布。
+            </p>
+            <div style="margin-top: 20px; font-size: 14px;">
+                <a href="https://sleepfutures.github.io/my-resume/" target="_blank" style="margin-right: 20px;">🌐 在线预览 (即当前网页)</a>
+                <a href="https://github.com/sleepfutures/my-resume" target="_blank">💻 查看 GitHub 源码仓库</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚留白 -->
+    <div style="height: 100px;"></div>
+
+</body>
+</html>
