@@ -1,10 +1,10 @@
-HTML
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简历 - 苹果科技风格</title>
+    <title>sleepfutures24</title>
+    <!-- 仅保留高质感的无衬线 Inter 极简字体，移除不再使用的毛笔字体 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <style>
         :root {
@@ -13,7 +13,7 @@ HTML
             --text-color: #f5f5f7;
             --text-secondary: #86868b;
             --link-color: #2997ff;
-            --font-stack: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -27,27 +27,58 @@ HTML
             background-color: rgba(22, 22, 23, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             z-index: 9999; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .nav-content { max-width: 1024px; height: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 22px; }
-        .nav-logo { font-size: 18px; font-weight: 600; }
-        .nav-links { display: flex; list-style: none; gap: 32px; font-size: 12px; color: #cc; }
+        .nav-content { max-width: 1024px; height: 100%; margin: 0 auto; display: flex; justify-content: center; align-items: center; padding: 0 22px; }
+        .nav-links { font-size: 14px; font-weight: 500; letter-spacing: 0.1em; color: #cccccc; text-align: center; }
 
         /* Hero 欢迎区域 */
         .hero-section {
-            height: 85vh; width: 100%; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; text-align: center; padding-top: 44px;
-            background: linear-gradient(180deg, #000000 70%, #0b0b0c 100%);
+            height: 85vh; 
+            width: 100%; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 44px 22px 0 22px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%), url('hero-bg.jpg') no-repeat center center;
+            background-size: cover;
         }
-        .headline {
-            font-size: 56px; font-weight: 700; letter-spacing: -0.005em;
-            background: linear-gradient(180deg, #ffffff 30%, #a1a1a6 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;
-        }
-        .subhead { font-size: 24px; font-weight: 400; color: var(--text-secondary); margin-bottom: 32px; }
         
-        /* 联系方式标签 */
-        .contact-tags { display: flex; gap: 16px; font-size: 14px; }
-        .tag-btn { background-color: #f5f5f7; color: #1d1d1f; padding: 8px 18px; border-radius: 980px; font-weight: 500; }
-        .tag-btn-sec { border: 1px solid #f5f5f7; color: #f5f5f7; padding: 8px 18px; border-radius: 980px; }
+        /* 极致现代的无衬线 Slogan 样式 */
+        .headline-slogan {
+            font-family: var(--font-stack);
+            font-size: 96px;           /* 电脑端标志性大字号 */
+            font-weight: 800;          /* 超重字重，方正有力 */
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 0.2em;     /* 拉开字间距，营造呼吸感 */
+            padding-left: 0.2em;       /* 完美对齐大字间距导致的视觉偏差 */
+            
+            /* 80% 头部透明度的银白金属渐变 */
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(142, 142, 147, 0.3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* 沉稳的文字暗影，衬托出半透明图层的高级质感 */
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: sloganReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* 极致留白的低调副标题 */
+        .subhead-slogan {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.2); /* 20% 弱透明 */
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-top: 24px;
+        }
+
+        /* 优雅的出场动画 */
+        @keyframes sloganReveal {
+            0% { opacity: 0; filter: blur(5px); transform: scale(0.97); }
+            100% { opacity: 1; filter: blur(0); transform: scale(1); }
+        }
 
         /* 内容大版块标题 */
         .section-title { max-width: 1024px; margin: 80px auto 24px; padding: 0 22px; font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
@@ -72,8 +103,11 @@ HTML
 
         /* 响应式适配 */
         @media (max-width: 768px) {
-            .headline { font-size: 38px; }
-            .subhead { font-size: 18px; }
+            .headline-slogan { 
+                font-size: 42px;        /* 完美适配手机端宽度，间距拉开后也绝对不折行 */
+                letter-spacing: 0.15em; 
+                padding-left: 0.15em;
+            } 
             .grid-container { grid-template-columns: 1fr; }
             .card-full { grid-column: span 1; }
             .apple-card { padding: 24px; }
@@ -82,40 +116,36 @@ HTML
 </head>
 <body>
 
-    <!-- 顶栏 -->
+    <!-- 极简顶栏 -->
     <nav class="global-nav">
         <div class="nav-content">
-            <div class="nav-logo"></div>
-            <div class="nav-links">个人简历演示</div>
-            <div style="font-size: 14px; color: var(--link-color);">在线状态</div>
+            <div class="nav-links">个人简历 · 陈闽龙</div>
         </div>
     </nav>
 
-    <!-- Hero 核心介绍 -->
+    <!-- Hero 核心介绍（极简视觉舞台） -->
     <section class="hero-section">
-        <h1 class="headline">我是 陈闽龙</h1>
-        <p class="subhead">求职意向：新媒体运营 / 广告营销策划</p>
-        <div class="contact-tags">
-            <a href="mailto:your_email@example.com" class="tag-btn">📧 联系我</a>
-            <span class="tag-btn-sec">📱 17723944229</span>
-        </div>
+        <h1 class="headline-slogan">始终进化</h1>
+        <p class="subhead-slogan">ALWAYS EVOLVING // SYSTEM ON</p>
     </section>
 
-    <!-- 主体内容 -->
-    <h2 class="section-title">核心实力</h2>
+    <!-- 主体内容：所学与所思 -->
+    <h2 class="section-title">所学与所思</h2>
     <div class="grid-container">
-        <!-- 技能卡片 -->
+        <!-- 技能与智能化工作流卡片 -->
         <div class="apple-card card-full">
-            <p class="card-eyebrow">SKILLS & TOOLS</p>
-            <h3 class="card-heading">技术栈清单</h3>
-            <p class="card-body">目前已掌握并能独立运用于项目开发的前端基础工具及工作流：</p>
+            <p class="card-eyebrow">INTELLIGENT WORKFLOW // 系统构建</p>
+            <h3 class="card-heading">全栈运营系统与 AI Agent 生产力架构</h3>
+            <p class="card-body">
+                依托 4 年+新媒体与电商实战积淀，将全链路运营经验与前沿 AI 生产力无缝解构。擅长通过自动化与智能代理（Agent）重构内容流量矩阵，实现从内容策略到线索转化的闭环降本增效：
+            </p>
             <div class="skill-list">
-                <span class="skill-badge">HTML5 语义化标签</span>
-                <span class="skill-badge">CSS3 响应式布局</span>
-                <span class="skill-badge">JavaScript 基础</span>
-                <span class="skill-badge">VS Code 编辑器</span>
-                <span class="skill-badge">Git 版本控制</span>
-                <span class="skill-badge">GitHub Pages 部署</span>
+                <span class="skill-badge" style="background: rgba(41, 151, 255, 0.1); border-color: rgba(41, 151, 255, 0.3); color: #2997ff;">AI Agent 场景化构建 (Coze/Dify/Langchain)</span>
+                <span class="skill-badge" style="background: rgba(41, 151, 255, 0.1); border-color: rgba(41, 151, 255, 0.3); color: #2997ff;">数字人直播与自动化内容生成 (AIGC)</span>
+                <span class="skill-badge">新媒体内容矩阵 & 品牌 IP 孵化</span>
+                <span class="skill-badge">电商直播间全链路运营 & 流量承接</span>
+                <span class="skill-badge">多平台广告投放与 ROI 成本优化</span>
+                <span class="skill-badge">从 0 到 1 团队管理与跨部门协同</span>
             </div>
         </div>
 
@@ -124,28 +154,29 @@ HTML
             <p class="card-eyebrow">EDUCATION</p>
             <h3 class="card-heading">教育背景</h3>
             <p class="card-body" style="color: #fff; font-weight: 500;">重庆工商大学 · 市场营销</p>
-            <p class="card-body" style="margin-top: 4px;">2017.09 - 2021.06 (毕业时间)</p>
-            <p class="card-body" style="margin-top: 12px;">在校修读过前端网页设计相关基础，具备良好的自学能力与逻辑思维。</p>
+            <p class="card-body" style="margin-top: 4px;">2017.09 - 2021.06 (学士学位)</p>
+            <p class="card-body" style="margin-top: 12px;">商业敏锐度结合数字化工具实践，擅长通过技术方案解决营销转化痛点。</p>
         </div>
 
         <!-- 自我评价 -->
         <div class="apple-card">
             <p class="card-eyebrow">PROFILE</p>
-            <h3 class="card-heading">自我进修</h3>
-            <p class="card-body">对代码有洁癖，向往卓越的 UI/UX 用户体验。近期通过实践独立打通了从本地代码编写、Git 协同到云端自动化部署的全套现代化前端开发工作流，具备极强的执行力。</p>
+            <h3 class="card-heading">跨界进化</h3>
+            <p class="card-body">既懂用户心理学与创意文案，又具备技术落地能力。自学打通了现代化代码版本管理与云端自动化部署流程，能够独立输出具备高极简美学质感的数字作品。</p>
         </div>
     </div>
 
-    <h2 class="section-title">项目成果</h2>
+    <!-- 主体内容：实践与留存 -->
+    <h2 class="section-title">实践与留存</h2>
     <div class="grid-container">
         <!-- 项目一 -->
         <div class="apple-card card-full">
-            <p class="card-eyebrow">PROJECTS</p>
-            <h3 class="card-heading">精仿 Apple 风格个人科技主页</h3>
+            <p class="card-eyebrow">PROJECTS // MILESTONES</p>
+            <h3 class="card-heading">全栈式 Apple 视觉风数字化个人品牌主页</h3>
             <p class="card-body">
-                <strong>项目描述：</strong> 严格遵循 Apple 官网视觉规范（极简黑白灰、毛玻璃导航栏、高对比度粗标题）打造的个人简历网页。<br>
-                <strong>核心技术：</strong> 纯原生 HTML5 + CSS3 响应式架构，集成 CSS 贝塞尔曲线过渡动画、Flexbox 及 Grid 复合网格布局。<br>
-                <strong>工程亮点：</strong> 项目完全通过 <strong>VS Code</strong> 纯手工编码完成，使用 <strong>Git</strong> 进行多版本精细化迭代维护，并成功依托 <strong>GitHub Pages</strong> 服务实现公网自动化部署与发布。
+                <strong>项目描述：</strong> 严格遵循 Apple 官网视觉规范与高阶交互打造的个人简历/作品展示聚合页，用作个人品牌流量的私域落地承接。<br>
+                <strong>技术与工程：</strong> 纯原生 HTML5 + CSS3 响应式架构，集成媒体查询、Flexbox 及 Grid 网格布局，通过 Git 进行版本细粒度管理更新。<br>
+                <strong>营销亮点：</strong> 彻底颠覆传统 PDF 简历格式，通过极高美学质感的线上交互提升第一眼停留率。链接直接部署至公网，HR 及团队主管可一键直达，极大缩流决策链路。
             </p>
             <div style="margin-top: 20px; font-size: 14px;">
                 <a href="https://sleepfutures.github.io/my-resume/" target="_blank" style="margin-right: 20px;">🌐 在线预览 (即当前网页)</a>
