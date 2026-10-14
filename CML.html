@@ -213,12 +213,14 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         .lightbox-content {
-            position: relative; max-width: 90vw; max-height: 90vh; border-radius: 12px; overflow: hidden;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            width: min(90vw, 1100px); height: min(82vh, 760px); max-width: 90vw; max-height: 90vh;
+            border-radius: 12px; overflow: hidden; background: #111;
             animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        .lightbox-img, .lightbox-video { width: 100%; height: 100%; object-fit: contain; }
+        .lightbox-img, .lightbox-video { max-width: 100%; max-height: 100%; object-fit: contain; }
         .lightbox-close {
             position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
             background: rgba(255,255,255,0.2); border: none; color: #fff; font-size: 28px;
@@ -279,7 +281,7 @@
 
     <!-- Hero 核心介绍 -->
     <section class="hero-section">
-        <h1 class="headline-slogan">始终进化</h1>
+        <h1 class="headline-slogan">陈闽龙</h1>
         <p class="subhead-slogan">ALWAYS EVOLVING // SYSTEM ON</p>
     </section>
 
@@ -290,15 +292,15 @@
             <p class="card-eyebrow">PROFESSIONAL SKILLS // 核心能力</p>
             <h3 class="card-heading">全域流量运营与 AI Agent 驱动的生产力架构</h3>
             <p class="card-body">
-                依托 4 年+新媒体与电商实战积淀，将全链路运营经验与前沿 AI 生产力无缝解构。擅长通过自动化与智能代理（Agent）重构内容流量矩阵，实现从内容策略到线索转化的闭环降本增效：
+                5 年高单价品类获客与电商赛道实战经验，将全链路运营经验与前沿 AI 生产力无缝解构。擅长通过自动化与智能代理（Agent）重构内容流量矩阵，实现从内容策略到线索转化的闭环降本增效：
             </p>
             <div class="skill-list">
-                <span class="skill-badge" style="background: rgba(41, 151, 255, 0.1); border-color: rgba(41, 151, 255, 0.3); color: #2997ff;">新媒体运营&品牌内容运营</span>
+                <span class="skill-badge" style="background: rgba(41, 151, 255, 0.1); border-color: rgba(41, 151, 255, 0.3); color: #2997ff;">新媒体运营&品牌IP运营</span>
                 <span class="skill-badge" style="background: rgba(41, 151, 255, 0.1); border-color: rgba(41, 151, 255, 0.3); color: #2997ff;">AI Agent 工作流构建 (Coze/Dify/Langchain)</span>
                 <span class="skill-badge">直播间全流程落地&SOP搭建</span>
                 <span class="skill-badge">创意视频策划&投放素材框架</span>
                 <span class="skill-badge">多平台广告投放与成本优化</span>
-                <span class="skill-badge">小规模团队管理与跨部门协同</span>
+                <span class="skill-badge">中小规模团队管理与跨部门协同</span>
                 <span class="skill-badge">AI驱动的数据清洗分析</span>
             </div>
         </div>
@@ -421,7 +423,17 @@
     <script>
         // 项目媒体配置
         const projectMedia = {
-            'project-1': { name: '鸿蒙智行·福州东街口', folder: 'assets/project-1' },
+            'project-1': {
+                name: '鸿蒙智行·福州东街口',
+                folder: 'assets/project-1',
+                items: [
+                    { type: 'image', src: 'assets/project-1/1.png', name: '项目图片 1' },
+                    { type: 'image', src: 'assets/project-1/2.png', name: '项目图片 2' },
+                    { type: 'image', src: 'assets/project-1/3.png', name: '项目图片 3' },
+                    { type: 'image', src: 'assets/project-1/4.png', name: '项目图片 4' },
+                    { type: 'video', src: 'assets/project-1/vedio.mp4', name: '项目视频' }
+                ]
+            },
             'project-2': { name: '福州老周爱家装', folder: 'assets/project-2' },
             'project-3': { name: '骆易家家居旗舰店', folder: 'assets/project-3' },
             'project-4': { name: '有家装饰', folder: 'assets/project-4' }
@@ -441,43 +453,82 @@
                     <div class="gallery-header">
                         <span>📦 项目素材库</span>
                         <div class="gallery-filters">
-                            <button class="filter-btn active" data-type="all">全部</button>
-                            <button class="filter-btn" data-type="image">🖼️ 图片</button>
-                            <button class="filter-btn" data-type="video">📹 视频</button>
-                            <button class="filter-btn" data-type="doc">📄 文档</button>
+                            <button class="filter-btn active" data-type="all" onclick="filterGallery(this)">全部</button>
+                            <button class="filter-btn" data-type="image" onclick="filterGallery(this)">🖼️ 图片</button>
+                            <button class="filter-btn" data-type="video" onclick="filterGallery(this)">📹 视频</button>
+                            <button class="filter-btn" data-type="doc" onclick="filterGallery(this)">📄 文档</button>
                         </div>
                     </div>
                     <div class="gallery-container" id="container-${projectId}">
-                        <div class="gallery-item doc" title="待上传素材" style="opacity:0.5;cursor:help;">
-                            <span style="font-size:40px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">➕</span>
-                        </div>
                     </div>
                     <div style="font-size:12px;color:var(--text-secondary);margin-top:8px;line-height:1.5;">
                         💡 <strong>素材文件夹:</strong> <code style="background:var(--badge-bg);padding:2px 6px;border-radius:4px;">${config.folder}/</code><br>
-                        支持格式: *.jpg, *.png, *.mp4, *.webm, *.pdf
+                        ${config.items ? `${config.items.length} 项素材` : '支持格式: *.jpg, *.png, *.mp4, *.webm, *.pdf'}
                     </div>
                 `;
                 gallery.innerHTML = html;
+                renderGallery(gallery, 'all');
             });
+        }
+
+        function renderGallery(gallery, type) {
+            const projectId = gallery.dataset.project;
+            const config = projectMedia[projectId];
+            const container = gallery.querySelector('.gallery-container');
+            if (!config.items) {
+                container.innerHTML = '<div class="gallery-item doc" title="待上传素材" style="opacity:0.5;cursor:help;"><span style="font-size:40px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">+</span></div>';
+                return;
+            }
+            const items = (config.items || []).filter(item => type === 'all' || item.type === type);
+
+            if (items.length === 0) {
+                container.innerHTML = '<p class="card-body">暂无该类型素材</p>';
+                return;
+            }
+
+            container.innerHTML = items.map(item => {
+                const itemIndex = config.items.indexOf(item);
+                const preview = item.type === 'video'
+                    ? `<video src="${item.src}" muted playsinline preload="metadata"></video>`
+                    : `<img src="${item.src}" alt="${item.name}" loading="lazy">`;
+                const badge = item.type === 'video' ? 'VIDEO' : 'IMAGE';
+                return `<div class="gallery-item" role="button" tabindex="0" aria-label="预览${item.name}" onclick="openLightbox('${projectId}', ${itemIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('${projectId}', ${itemIndex})}">
+                    ${preview}<span class="gallery-item-badge">${badge}</span>
+                </div>`;
+            }).join('');
+        }
+
+        function filterGallery(button) {
+            const gallery = button.closest('.media-gallery');
+            gallery.querySelectorAll('.filter-btn').forEach(filter => filter.classList.remove('active'));
+            button.classList.add('active');
+            renderGallery(gallery, button.dataset.type);
         }
         
         // 打开灯箱
-        function openLightbox(item) {
-            const img = item.querySelector('img');
-            const video = item.querySelector('video');
-            const src = img ? img.src : (video ? video.src : '');
-            const type = img ? 'image' : 'video';
-            
-            document.getElementById('lightboxImg').style.display = type === 'image' ? 'block' : 'none';
-            document.getElementById('lightboxVideo').style.display = type === 'video' ? 'block' : 'none';
-            
-            if (type === 'image') {
-                document.getElementById('lightboxImg').src = src;
-            } else {
-                document.getElementById('lightboxVideo').src = src;
-            }
-            
+        function openLightbox(projectId, index) {
+            currentLightboxMedia = projectMedia[projectId].items;
+            currentLightboxIndex = index;
+            showLightboxMedia();
             document.getElementById('lightbox').classList.add('active');
+        }
+
+        function showLightboxMedia() {
+            const item = currentLightboxMedia[currentLightboxIndex];
+            const image = document.getElementById('lightboxImg');
+            const video = document.getElementById('lightboxVideo');
+            const isImage = item.type === 'image';
+            
+            video.pause();
+            image.style.display = isImage ? 'block' : 'none';
+            video.style.display = isImage ? 'none' : 'block';
+            if (isImage) {
+                image.src = item.src;
+            } else {
+                video.src = item.src;
+            }
+            document.getElementById('lightboxInfo').textContent = `${item.name} · ${currentLightboxIndex + 1}/${currentLightboxMedia.length}`;
+            document.querySelector('.lightbox-nav').style.display = currentLightboxMedia.length > 1 ? 'flex' : 'none';
         }
         
         // 关闭灯箱
@@ -488,8 +539,14 @@
         }
         
         // 切换媒体
-        function prevMedia() { }
-        function nextMedia() { }
+        function prevMedia() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxMedia.length) % currentLightboxMedia.length;
+            showLightboxMedia();
+        }
+        function nextMedia() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxMedia.length;
+            showLightboxMedia();
+        }
         
         // 页面加载时初始化
         document.addEventListener('DOMContentLoaded', initGalleries);
@@ -497,6 +554,10 @@
         // ESC 键关闭灯箱
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') prevMedia();
+                if (e.key === 'ArrowRight') nextMedia();
+            }
         });
 
         // 1. 核心复制函数
